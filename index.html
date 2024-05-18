@@ -1,0 +1,192 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+
+        <!-- CSS -->
+        <link href="css/global.css" rel="stylesheet" />
+        <link href="css/componentes.css" rel="stylesheet" />
+        <!-- App ultimo -->
+        <link href="index.css" rel="stylesheet" />        
+        
+        <!-- JS -->
+        <!-- Dependencias externas -->
+        <script src="vendor/jquery_3.7.1.min.js"></script>
+
+        <!-- Funcionalidad Pantallas (cargar primero) -->
+        <script src="js/mesas.js"></script>
+        <script src="js/productos.js"></script>
+        <script src="js/reservas.js"></script>
+        <script src="js/pedidos.js"></script>
+        <script src="js/facturas.js"></script>
+
+
+        <!-- Funciones Globales (depende de tener cargado primero scripts pantallas) -->
+        <script src="js/utils.js"></script>
+
+        <!-- Manejadores Eventos (depende de utilidades para saber que hacer al cambiar pestaña) -->
+        <script src="js/events.js"></script>
+
+        <!-- App (SIEMPRE ULTIMO) -->
+        <script src="index.js"></script>
+    </head>
+    <body>
+
+        <div class="home-container">
+            
+            <!-- Sidebar -->
+            <div class="sidebar-container">
+                <div class="title-nav">Menu</div>
+                <div class="item-nav">Mesas</div>
+                <div class="item-nav">Productos</div>
+                <div class="item-nav">Reservas</div>
+                <div class="item-nav">Pedidos</div>
+                <div class="item-nav">Facturas</div>
+            </div>
+
+            <!-- Page content -->
+            <div class="home-content">
+
+                <!-- Mesas -->
+                <div class="mesas-content">
+                    <div class="title-section row">
+                        <div>Mesas</div>
+                    </div>
+                    <div class="search-bar row">
+                        <img id="img-add" src="/img/agregar.png" width="40" height="40" />
+                        <input type="search" id="buscador" name="busqueda" placeholder="Buscar...">
+                    </div>
+                    <div class="table-container row">
+                        <table class="table">
+                            <tr>
+                                <th>Codigo</th>
+                                <th>Nombre</th>
+                                <th>Estado</th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                        </table>
+                    </div>
+                    <div id="form-container" class="form-container" style="display:none">
+                        <form>
+                            <div id="form-mesas">
+                                <h2 class="title-form">Añadir Mesa</h2>
+                                <div class="campo-codigo">
+                                    <label for="codigo">Código:</label>
+                                    <input type="text" name="codigo" id="codigo">
+                                </div>
+                            
+                                <label for="nombre">Nombre:</label>
+                                <input type="text" name="nombre" id="nombre">
+                                
+                                <label for="estado">Estado:</label>
+                                <input type="text" name="estado" id="estado" min="0" step="0.01" placeholder="Sin reservas">
+                            </div>
+
+                            
+                            <div id="form-productos" style="display:none;">
+                                <h2 class="title-form">Añadir Producto</h2>
+                                <div class="campo-codigo">
+                                    <label for="codigo-prod">Código:</label>
+                                    <input type="text" name="codigo-prod" id="codigo-prod">
+                                </div>
+                                <label for="nombre-producto">Nombre:</label>
+                                <input type="text" name="nombre-producto" id="nombre-producto">
+                                
+                                <label for="precio">Precio:</label>
+                                <input type="text" name="precio" id="precio" min="0" step="0.01">
+                            
+                                <label for="iva">Iva:</label>
+                                <input type="text" name="iva" id="iva">
+
+                                <label for="stock">Stock:</label>
+                                <input type="text" name="stock" id="stock">
+                            </div>
+
+                            <div id="form-reservas" style="display:none;">
+                                <h2 class="title-form">Añadir Reserva</h2>
+                                <div class="campo-codigo">
+                                    <label for="codigo-reserva">Código:</label>
+                                    <input type="text" name="codigo-reserva" id="codigo-reserva">
+                                </div>
+                                <label for="mesa-cod-reserv">Código de mesa:</label>
+                                <input type="text" name="mesa-cod-reserv" id="mesa-cod-reserv">
+                                
+                                <label for="fecha-reserva">Fecha:</label>
+                                <input type="text" name="fecha-reserva" id="fecha-reserva">
+                            
+                                <label for="n-comensales">Nº comensales:</label>
+                                <input type="text" name="n-comensales" id="n-comensales">
+
+                                <label for="nota-reserva">Nota:</label>
+                                <input type="text" name="nota-reserva" id="nota-reserva">
+                            </div>
+
+                            <div id="form-pedidos" style="display:none;">
+                                <h2 class="title-form">Añadir Pedido</h2>
+                                <div class="campo-codigo">
+                                    <label for="codigo-pedido">Código:</label>
+                                    <input type="text" name="codigo-pedido" id="codigo-pedido">
+                                </div>
+
+                                <label for="cod_mesa_pedido">Código de mesa:</label>
+                                <input type="text" name="cod_mesa_pedido" id="cod_mesa_pedido">
+
+
+                                <div id="botones-pedido" style="display:none;">
+                                    <input id="boton_add_prod_pedido" type="button" value="Añadir producto">
+                                    <input id="boton_del_prod_pedido" type="button" value="Eliminar producto">
+                                
+                                    <label for="producto-add-del">Producto para añadir/eliminar del pedido:</label>
+                                    <input type="text" name="producto-add-del" id="producto-add-del">
+                                
+                                    <label for="n-prod-add-del">Cantidad a añadir/eliminar del pedido:</label>
+                                    <input type="text" name="n-prod-add-del" id="n-prod-add-del">
+                                    
+                                </div>
+
+                            </div>
+
+                            <div id="form-facturas" style="display:none;">
+                                <h2 class="title-form">Generar Factura</h2>
+                                <label for="codigo-pedido-fact">Código del pedido sobre el que desea generar la factura:</label>
+                                <input type="text" name="codigo-pedido-fact" id="codigo-pedido-fact">
+                            </div>
+
+                            <input id="boton-guardar-form" type="submit" value="Guardar">
+                            <input id="boton-actualizar-form" type="button" value="Actualizar">
+                        </form>
+                    </div>
+                    <div id="delete-container" class="form-container">
+                        <form id="form-delete">
+                            <label>¿Seguro que quieres eliminar?</label>
+                            <div style="margin-top: 8px;">
+                                <button id="boton-aceptar" class="button accept-btn">Aceptar</button>
+                                <button id="boton-cancelar" class="button cancel-btn">Cancelar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Productos -->
+                <div class="productos-content" style="display: none">
+                    <h1>PRODUCTOS!!!!!!</h1>
+                </div>
+
+                <!-- Reservas -->
+                <div class="reservas-content" style="display: none">
+                    <h1>RESERVAS!!!!!!</h1>
+                </div>
+
+                <!-- Pedidos -->
+                <div class="pedidos-content" style="display: none">
+                    <h1>PEDIDOS!!!!!!</h1>
+                </div>
+
+                <!-- Facturas -->
+                <div class="facturas-content" style="display: none">
+                    <h1>FACTURAS!!!!!!</h1>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

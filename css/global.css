@@ -1,0 +1,40 @@
+/* Tema */
+
+/* Fuente */
+
+html * {
+   font-size: 1rem !important;
+   color: #000 !important;
+   font-family: Inter !important;
+}
+
+/* Elementos pequeños genericos */
+
+.row{
+    height: 20px;
+}
+
+.col{
+    display: inline-block;
+    height: 100%;
+}
+
+.button {
+    border: none;
+    color: white;
+    padding: 8px 12px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+.accept-btn {
+    background-color: #04AA6D;
+}
+
+.cancel-btn {
+    background-color: #ad3137;
+}
