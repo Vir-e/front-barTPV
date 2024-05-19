@@ -15,6 +15,19 @@ async function cargarReservasTabla(){
         console.log("Data...", data);
         ///
 
+
+
+        // Convertir fechas a objetos Date
+        reservas.forEach(objeto => {
+            objeto.fecha = new Date(objeto.date);
+        });
+                
+        // Ordenar la lista por fecha
+        reservas.sort((a, b) => b.fecha - a.fecha);
+
+
+        ///
+
         const $tabla = $(".table");
 
         $.each(reservas, function(index, reserva){
@@ -44,7 +57,7 @@ async function cargarDatosFormularioReserva(codigo_elemento){
 
         mostrarForm();
         $(".campo-codigo").css("display", "block");
-        $("#form-container form").css("height", "330px");
+        //$("#form-container form").css("height", "550px");
         $(".title-form").text("Modificar Reserva");
         $("#boton-guardar-form").css("display", "none");
         $("#boton-actualizar-form").css("display", "block");

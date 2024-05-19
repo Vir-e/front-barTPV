@@ -67,7 +67,7 @@ async function cargarDatosFormularioPedido(codigo_elemento){
         mostrarForm();
         $(".campo-codigo").css("display", "block");
         $(".campo-productos-pedido").css("display", "block");
-        $("#form-container form").css("height", "330px");
+        $("#form-container form").css("height", "340px");
         $(".title-form").text("Modificar Pedido");
         $("#boton-guardar-form").css("display", "none");
         $("#boton-actualizar-form").css("display", "none");
@@ -132,6 +132,22 @@ function addProductoPedido(formData){
 
     $("#form-container").css("display", "none");
 
+
+
+    let $tabla = $(".table");
+    let $filas = $tabla.find("tr");
+
+    $filas.each(function(){
+        $(this).find("td").remove();
+    });
+
+    setTimeout(function() {
+        cargarPedidosTabla();
+      }, 200); // Retardo 
+
+
+    //cargarPedidosTabla();
+
 }
 
 // Hace petición para eliminar producto del pedido
@@ -174,6 +190,18 @@ function delProductoPedido(formData){
     });
 
     $("#form-container").css("display", "none");
+
+    let $tabla = $(".table");
+    let $filas = $tabla.find("tr");
+
+    $filas.each(function(){
+        $(this).find("td").remove();
+    });
+
+    setTimeout(function() {
+        cargarPedidosTabla();
+      }, 200); // Retardo 
+
 
 }
 

@@ -16,6 +16,8 @@ async function cargarMesasTabla(){
 
         const $tabla = $(".table");
 
+    
+        //////////
         $.each(mesas, function(index, mesa){
             const $fila = $("<tr>");
             $fila.append("<td>" + mesa.code + "</td>");
@@ -140,6 +142,9 @@ function updateMesa(formData){
     });
 
     $("#form-container").css("display", "none");
+
+    
+
 
 
 }

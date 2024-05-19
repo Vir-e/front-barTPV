@@ -181,4 +181,16 @@ function borrarProducto(cod_producto){
             console.error('Hubo un problema con la solicitud:', error);
         });
 
+        
+        let $tabla = $(".table");
+        let $filas = $tabla.find("tr");
+    
+        $filas.each(function(){
+            $(this).find("td").remove();
+        });
+        setTimeout(function() {
+            cargarProductosTabla();
+        }, 200); // Retardo 
+      
+
 }

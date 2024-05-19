@@ -67,6 +67,9 @@ function cambiarTituloyColumnasSeccion(seccion){
         $("#form-facturas").css("display", "none");
         $("#form-reservas").css("display", "block");
 
+        $("#form-container form").css("height", "350px");
+
+
         columnas = [
             {nomcolumn: "Codigo", clase: "column"},
             {nomcolumn: "Codigo mesa", clase: "column"},
@@ -86,6 +89,8 @@ function cambiarTituloyColumnasSeccion(seccion){
         $("#form-facturas").css("display", "none");
         $("#form-pedidos").css("display", "block");
 
+        $("#form-container form").css("height", "150px");
+
 
         columnas = [
             {nomcolumn: "Codigo", clase: "column"},
@@ -103,6 +108,9 @@ function cambiarTituloyColumnasSeccion(seccion){
         $("#form-reservas").css("display", "none");
         $("#form-pedidos").css("display", "none");
         $("#form-facturas").css("display", "block");
+
+        $("#form-container form").css("height", "200px");
+
 
         columnas = [
             {nomcolumn: "Codigo", clase: "column"},

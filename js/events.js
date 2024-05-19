@@ -29,6 +29,9 @@ function registrarEventos() {
       $("#form-pedidos .title-form").text("Añadir Pedidos");
       $("#form-facturas .title-form").text("Añadir Facturas");
 
+      $("#botones-pedido").css("display", "none");
+
+
 
       // Pone todos los input text vacíos
       $('form input[type="text"]').val('');
@@ -73,6 +76,9 @@ function registrarEventos() {
         let codigo_fila = $(element.target).closest("tr").find("td:first").text();
         console.log("Código del elemento de la fila: " + codigo_fila);
 
+        $('#producto-add-del').val('');
+        $('#n-prod-add-del').val('');
+
         // TODO llamada por tab seleccionado 
         API_ENTIDAD.consultarElemento(codigo_fila)
         //cargarDatosFormularioMesa(codigo_fila);
@@ -114,6 +120,8 @@ function registrarEventos() {
   $("#boton-aceptar").click(function(){
     console.log("cod_element_delete: ", cod_element_delete)
     // TODO llamada por tab seleccionado 
+
+    console.log("SECCIONNNN", seccion);
     if (seccion == SeccionesType.MESAS){
       borrarMesa(cod_element_delete);
     }
@@ -153,7 +161,7 @@ function registrarEventos() {
 
       $filas.each(function(){
           $(this).find("td").remove();
-          $(this).find("th").remove();
+          //$(this).find("th").remove();
       });
       cargarMesasTabla();
 
@@ -176,7 +184,6 @@ function registrarEventos() {
 
       $filas.each(function(){
           $(this).find("td").remove();
-          $(this).find("th").remove();
       });
       cargarProductosTabla();
 
@@ -199,7 +206,6 @@ function registrarEventos() {
 
       $filas.each(function(){
           $(this).find("td").remove();
-          $(this).find("th").remove();
       });
       cargarReservasTabla();
 
@@ -219,7 +225,6 @@ function registrarEventos() {
 
       $filas.each(function(){
           $(this).find("td").remove();
-          $(this).find("th").remove();
       });
       cargarPedidosTabla();
 
@@ -239,7 +244,6 @@ function registrarEventos() {
 
       $filas.each(function(){
           $(this).find("td").remove();
-          $(this).find("th").remove();
       });
       cargarFacturasTabla();
 
@@ -249,15 +253,7 @@ function registrarEventos() {
 
   // Controlador del formulario para actualizar
   $("#boton-actualizar-form").click(function(){
-    /*
-    const codigo = $('#codigo').val();
-    const nombre = $('#nombre').val();
-    const estado = $('#estado').val();
 
-    console.log('Código desde controlador:', codigo);
-    console.log('Nombre:', nombre);
-    console.log('Estado:', estado);
-    */
 
     if (seccion == SeccionesType.MESAS){
     let formData = {
@@ -269,6 +265,20 @@ function registrarEventos() {
     // TODO llamada por tab seleccionado
     updateMesa(formData);
     
+
+
+    $("#form-container").css("display", "none");
+
+    let $tabla = $(".table");
+    let $filas = $tabla.find("tr");
+
+    $filas.each(function(){
+        $(this).find("td").remove();
+    });
+    setTimeout(function() {
+      cargarMesasTabla();
+    }, 200); // Retardo 
+
     }
 
     else if (seccion == SeccionesType.PRODUCTOS){
@@ -282,6 +292,18 @@ function registrarEventos() {
       };
       
       updateProducto(formData);
+
+      $("#form-container").css("display", "none");
+
+      let $tabla = $(".table");
+      let $filas = $tabla.find("tr");
+  
+      $filas.each(function(){
+          $(this).find("td").remove();
+      });
+      setTimeout(function() {
+        cargarProductosTabla();
+      }, 200); // Retardo 
       }
 
     else if (seccion == SeccionesType.RESERVAS){
@@ -295,6 +317,18 @@ function registrarEventos() {
       };
       
       updateReserva(formData);
+
+      $("#form-container").css("display", "none");
+
+      let $tabla = $(".table");
+      let $filas = $tabla.find("tr");
+  
+      $filas.each(function(){
+          $(this).find("td").remove();
+      });
+      setTimeout(function() {
+        cargarReservasTabla();
+      }, 300); // Retardo 
       }
 
       else if (seccion == SeccionesType.PEDIDOS){
@@ -308,6 +342,8 @@ function registrarEventos() {
         };
         
         updatePedido(formData);
+
+
         }
 
   });
@@ -322,7 +358,7 @@ function registrarEventos() {
     };
 
     addProductoPedido(formData);
-    cargarPedidosTabla();
+
 
   });
 
@@ -337,7 +373,7 @@ function registrarEventos() {
     };
 
     delProductoPedido(formData);
-    cargarPedidosTabla();
+
 
 
   });

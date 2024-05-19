@@ -13,7 +13,18 @@ async function cargarFacturasTabla(){
         // Acceder a los datos
         const facturas = data;
         console.log("Data...", data);
-        ///
+        
+        ///new code
+        // Convertir fechas a objetos Date
+        facturas.forEach(objeto => {
+            objeto.fecha = new Date(objeto.date);
+        });
+                
+        // Ordenar la lista por fecha
+        facturas.sort((a, b) => b.fecha - a.fecha);
+
+
+        //////
         
 
         const $tabla = $(".table");
